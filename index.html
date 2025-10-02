@@ -1,137 +1,321 @@
 <!DOCTYPE html>
-<!-- El atributo 'lang' es importante para la accesibilidad y el SEO. 'es' indica que el contenido está en español. -->
 <html lang="es">
-
 <head>
-    <!-- UTF-8 es el estándar de codificación de caracteres que soporta la mayoría de los idiomas. -->
     <meta charset="UTF-8">
-    <!-- Esta etiqueta asegura que la página se vea bien en todos los dispositivos, adaptándose al ancho de la pantalla. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Un título descriptivo es crucial para el SEO y para que los usuarios identifiquen la pestaña en su navegador. -->
-    <title>Portafolio de Javier Javierman - Desarrollador Web</title>
-</head>
-<div class=
-"color-changer">
-<h3>Cambiador de Colores</h3>
-<button id=
-"cambiar-color">Cambiar Color de Fondo</button>
-<p id=
-"color-actual">Color actual: Blanco</p>
-</div>
-<head>
-<meta charset=
-"UTF-8">
-<meta name=
-"viewport" content=
-<title>Mi Página Personal</title>
-<link rel=
-"stylesheet" href=
-"styles.css">
-</head>
-"width=device-width, initial-scale=1.0">
-<body>
+    <title>IAparatodos: La IA a tu alcance</title>
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ícono de Font Awesome para el pie de página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- 
+        =====================================================
+        | SECCIÓN CSS (Estilos Actualizados)                |
+        =====================================================
+    -->
+    <style>
+        /* Definición de la fuente principal: Trebuchet MS con fallbacks */
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: #f0f4f8; /* Color de fondo muy claro para el cuerpo */
+            transition: all 0.3s ease;
+        }
 
-    <!-- ====================================================== -->
-    <!-- ENCABEZADO (HEADER)                                    -->
-    <!-- La etiqueta <header> define el contenido introductorio -->
-    <!-- de la página. Usualmente contiene el título principal, -->
-    <!-- un logo o un subtítulo.                                -->
-    <!-- ====================================================== -->
-    <header>
-        <h1>Javier Javierman</h1>
-        <p><em>Desarrollador Web en Formación</em></p>
-    </header>
-
-    <!-- ====================================================== -->
-    <!-- CONTENIDO PRINCIPAL (MAIN)                             -->
-    <!-- La etiqueta <main> envuelve el contenido principal y   -->
-    <!-- único de la página. Ayuda a los motores de búsqueda y  -->
-    <!-- a las tecnologías de asistencia a entender qué es lo   -->
-    <!-- más importante. Solo debe haber un <main> por página.  -->
-    <!-- ====================================================== -->
-    <main>
-
-        <!-- ====================================================== -->
-        <!-- SECCIÓN: ACERCA DE MÍ                                  -->
-        <!-- La etiqueta <section> agrupa contenido relacionado.  -->
-        <!-- Es ideal para dividir la página en bloques temáticos.-->
-        <!-- Cada sección debería tener su propio encabezado (h2-h6)-->
-        <!-- ====================================================== -->
-        <section>
-            <h2>Sobre Mí</h2>
-            <p>
-                Desde que descubrí el poder del código, me he dedicado a entender cómo la tecnología puede resolver problemas reales. Mi viaje en el desarrollo web nace de esa curiosidad: mi objetivo es transformar ideas en experiencias digitales que no solo sean funcionales, sino que también aporten un valor real a las personas. Estoy construyendo mi camino, línea por línea, para crear sitios web intuitivos y útiles.
-            </p>
-        </section>
-
-        <!-- ====================================================== -->
-        <!-- SECCIÓN: HABILIDADES                                   -->
-        <!-- ====================================================== -->
-        <section>
-            <h2>Habilidades</h2>
-            <ul>
-                <li>Aprendizaje Rápido y Adaptabilidad</li>
-                <li>Trabajo en Equipo y Colaboración</li>
-                <li>Comunicación Efectiva</li>
-                <li>Resolución de Problemas</li>
-                <li>Fundamentos de Inteligencia Artificial</li>
-                <li><strong>Desarrollo Web (HTML)</strong></li>
-            </ul>
-        </section>
-
-        <!-- ====================================================== -->
-        <!-- SECCIÓN: INTERESES                                     -->
-        <!-- ====================================================== -->
-        <section>
-            <h2>Intereses</h2>
-            <ol>
-                <li>Tecnología y desarrollo de software</li>
-                <li>Lectura de divulgación científica</li>
-                <li>Viajes y gastronomía internacional</li>
-                <li>Cine documental</li>
-                <li>Innovación en el sector automotriz</li>
-            </ol>
-        </section>
+        /* Estilo para los nuevos botones modernos (btn-card) */
+        .btn-card {
+            /* Fondo azul translúcido (bg-blue-100) y borde azul suave (border-blue-300) */
+            @apply bg-blue-100 border border-blue-300 text-gray-800 font-bold p-6 rounded-2xl shadow-md 
+                   transition-all duration-300 ease-in-out flex flex-col items-center justify-center space-y-3 
+                   w-full text-center hover:bg-blue-200;
+            min-height: 120px; /* Asegura un buen tamaño */
+        }
         
-        <!-- ====================================================== -->
-        <!-- SECCIÓN: HOJA DE RUTA DE APRENDIZAJE                   -->
-        <!-- ====================================================== -->
-        <section>
-            <h2>Mi Ruta de Aprendizaje</h2>
-            <p>
-                Actualmente estoy inmerso en un programa de formación en desarrollo web. Mis próximos pasos son:
-            </p>
-            <ul>
-                <li><mark>HTML:</mark> Creación de la estructura y semántica web. (¡Completado!)</li>
-                <li><strong>CSS:</strong> Diseño y estilización para crear experiencias visuales atractivas.</li>
-                <li><strong>JavaScript:</strong> Incorporación de interactividad y dinamismo a los sitios web.</li>
-            </ul>
-        </section>
+        /* Efecto Flotante: Elevación, sombra grande y escala al pasar el ratón */
+        .btn-card:hover {
+            @apply transform translate-y-[-4px] scale-[1.02] shadow-xl ring-2 ring-blue-500/50; 
+        }
 
-    </main>
+        /* Estilo para el encabezado principal con un gradiente llamativo */
+        .header-gradient {
+            background: linear-gradient(135deg, #1d4ed8 0%, #d946ef 100%);
+            color: white;
+            @apply flex flex-col items-center justify-center;
+        }
 
-    <!-- ====================================================== -->
-    <!-- PIE DE PÁGINA (FOOTER)                                 -->
-    <!-- La etiqueta <footer> define el pie de página. Suele   -->
-    <!-- contener información de contacto, derechos de autor,   -->
-    <!-- enlaces a redes sociales, etc.                         -->
-    <!-- ====================================================== -->
-    <footer>
-        <h2>Contacto</h2>
-        <!-- La etiqueta <address> está diseñada específicamente -->
-        <!-- para contener información de contacto.               -->
-        <address>
-            <p>Puedes contactarme a través de:</p>
-            Email: <a href="mailto:javier@iaparaseniors.com.es">javier@iaparaseniors.com.es</a><br>
-            Teléfono: <a href="tel:+5551234567">(555) 123-4567</a>
-        </address>
-        <!-- Es una buena práctica incluir el año y el titular de los derechos -->
-        <p><a href=
-"proyectos.html">Ver Mis Proyectos Futuros</a></p>
-        <p>&copy; 2024 Javier Javierman. Todos los derechos reservados.</p>
+        /* Estilo para el contenedor principal, aplicando el máximo de 800px y centrado */
+        .main-container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 80vh;
+        }
+
+        /* Estilo para los hipervínculos dentro de la lista de cursos para que se destaquen */
+        .course-link {
+            color: #4f46e5;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .course-link:hover {
+            color: #8b5cf6;
+        }
+        
+        /* Estilo para la imagen del encabezado */
+        .header-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+            @apply rounded-xl shadow-lg;
+        }
+        
+        /* Ocultamos el estilo obsoleto para evitar conflictos, aunque no está ya en el HTML */
+        .btn-fab { display: none; } 
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+        =====================================================
+        | SECCIÓN HTML (Estructura de la página)            |
+        =====================================================
+    -->
+
+    <!-- CONTENEDOR PRINCIPAL (Ancho máximo 800px y centrado) -->
+    <div class="main-container p-4 md:p-8 bg-white shadow-2xl rounded-b-xl border-t-8 border-indigo-500/50">
+
+        <!-- ENCABEZADO PRINCIPAL (HEADER) -->
+        <header class="header-gradient p-8 rounded-t-xl text-center shadow-lg mb-8">
+            <img 
+                src="https://javierman-torre.github.io/IAparatodos/assets/images/diagrama-ia.png" 
+                alt="Diagrama de Inteligencia Artificial para todos (IAparatodos)" 
+                class="header-image w-3/4 md:w-1/2 mx-auto"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x300/1d4ed8/ffffff?text=DIAGRAMA+IAparatodos+%7C+ERROR+DE+CARGA';"
+            >
+
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4">
+                IAparatodos: La IA a tu alcance
+            </h1>
+            <p class="mt-2 text-lg font-light opacity-90">Tu almacén de conocimiento sobre Inteligencia Artificial</p>
+        </header>
+        <!-- FIN DEL ENCABEZADO PRINCIPAL -->
+
+        <!-- INTRODUCCIÓN Y CONTENIDO DE LA PÁGINA -->
+        <main class="space-y-12">
+
+            <!-- SECCIÓN DE INTRODUCCIÓN GENERAL -->
+            <section class="text-center px-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">¡Bienvenido al Viaje de la IA!</h2>
+                <p class="text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                    Inmerso en un emocionante proceso de **aprendizaje sobre la Inteligencia Artificial**, con gran entusiasmo he creado este espacio para compartir los recursos, apuntes y conocimientos que voy adquiriendo en esta fascinante disciplina. Mi objetivo es que este almacén de Información te sea útil para comenzar o profundizar tu propia exploración. ¡La IA es para todos!
+                </p>
+            </section>
+
+            <!-- 1. PÁGINA DE INICIO (Home) - SECCIÓN ACTUALIZADA DE BOTONES -->
+            <div id="page-inicio" class="page-content space-y-8 px-4">
+                <h3 class="text-3xl font-semibold text-center text-indigo-700">Explora Nuestros Recursos</h3>
+                
+                <!-- 
+                    ACTUALIZACIÓN: Usamos flexbox para la alineación horizontal en dispositivos grandes (md:flex).
+                    El espacio entre botones es 'gap-4', y en móvil (por defecto) sigue siendo una columna.
+                -->
+                <div class="flex flex-col md:flex-row gap-4">
+
+                    <!-- BOTÓN: Documentación soporte (btn-card) -->
+                    <button onclick="showPage('page-documentacion')" class="btn-card flex-1">
+                        <i class="fas fa-file-alt text-3xl text-blue-600"></i> 
+                        <span class="text-base font-semibold">Documentación de Soporte</span>
+                    </button>
+
+                    <!-- BOTÓN: Novedades (Color NARANJA/ROJO dentro del esquema translúcido) -->
+                    <button onclick="showPage('page-novedades')" class="btn-card flex-1 hover:border-orange-400 hover:ring-orange-500/50">
+                        <i class="fas fa-star text-3xl text-orange-600"></i> 
+                        <span class="text-base font-semibold">Novedades</span>
+                    </button>
+
+                    <!-- BOTÓN: Videos de apoyo (btn-card) -->
+                    <button onclick="showPage('page-videos')" class="btn-card flex-1 hover:border-teal-400 hover:ring-teal-500/50">
+                        <i class="fas fa-video text-3xl text-teal-600"></i> 
+                        <span class="text-base font-semibold">Videos de Apoyo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. PÁGINA SECUNDARIA: Documentación soporte (Oculta inicialmente) -->
+            <div id="page-documentacion" class="page-content hidden p-6 bg-gray-50 rounded-lg shadow-inner border-l-4 border-purple-500">
+                <button onclick="showPage('page-inicio')" class="text-purple-600 hover:text-purple-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-semibold text-purple-700 mb-4">📁 Documentación de Soporte</h3>
+                <p class="text-gray-600 mb-6">Aquí encontrarás guías, PDFs, y resúmenes de los conceptos clave de la IA (Machine Learning, Deep Learning, Procesamiento de Lenguaje Natural, etc.).</p>
+                <ul class="space-y-3">
+                    <li class="p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between shadow-sm hover:shadow-md transition">
+                        <span class="text-gray-700 font-medium"><i class="fas fa-book-reader mr-2 text-indigo-500"></i> Charla Junio 2025</span>
+                        <a href="https://drive.google.com/file/d/1TvLYUlWaLkAnbw_QPNy1qwEHVn4UliIF/view?usp=share_link" target="_blank" class="text-sm text-teal-600 hover:text-teal-800 font-bold">Descargar</a>
+                    </li>
+                    <li class="p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between shadow-sm hover:shadow-md transition">
+                        <span class="text-gray-700 font-medium"><i class="fas fa-book-reader mr-2 text-indigo-500"></i> Charla Septiembre 2025</span>
+                        <a href="https://docs.google.com/presentation/d/1NKy0fuGh7gcLV3ySYSDzCnHQKn_0NyKR/edit?usp=share_link&ouid=102027009933778991773&rtpof=true&sd=true" target="_blank" class="text-sm text-teal-600 hover:text-teal-800 font-bold">Descargar</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 3. PÁGINA SECUNDARIA: Novedades -->
+            <div id="page-novedades" class="page-content hidden p-6 bg-gray-50 rounded-lg shadow-inner border-l-4 border-red-500">
+                <button onclick="showPage('page-inicio')" class="text-red-600 hover:text-red-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-semibold text-red-700 mb-4">✨ Novedades y Actualizaciones</h3>
+                <p class="text-gray-600 mb-6">Contenido y anuncios recientes sobre este almacén de Información y el mundo de la Inteligencia Artificial.</p>
+                
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition text-center">
+                        <span class="text-gray-700 font-medium block mb-2">
+                            <i class="fas fa-image mr-2 text-orange-500"></i> Novedad de Contenido
+                        </span>
+                        <p class="text-sm text-gray-500 mb-4">¡Una nueva imagen compartida en Google Drive! Haz clic para ver el recurso.</p>
+                        <a href="https://drive.google.com/file/d/12iYcZWhpANyLP_oW__cTE06EmOlGDot9/view?usp=share_link" 
+                           target="_blank" 
+                           class="inline-block py-2 px-4 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition duration-300 text-sm">
+                            <i class="fas fa-external-link-alt mr-2"></i> Ver Imagen (Drive)
+                        </a>
+                    </div>
+                    
+                     <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition">
+                        <span class="text-gray-700 font-medium block">
+                            <i class="fas fa-wrench mr-2 text-red-500"></i> Nueva contenido en Preparación
+                        </span>
+                        <p class="text-xs text-gray-500 mt-1">Estamos preparando más contenido útil para el uso en el día a día de la IA. ¡Pronto más detalles!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 4. PÁGINA SECUNDARIA: Videos de apoyo -->
+            <div id="page-videos" class="page-content hidden p-6 bg-gray-50 rounded-lg shadow-inner border-l-4 border-teal-500">
+                <button onclick="showPage('page-inicio')" class="text-teal-600 hover:text-teal-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-semibold text-teal-700 mb-4">🎬 Videos de Apoyo</h3>
+                <p class="text-gray-600 mb-6">Una colección seleccionada de tutoriales y charlas que explican visualmente los temas más complejos de la IA.</p>
+                <ul class="space-y-3">
+                    <li class="p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between shadow-sm hover:shadow-md transition">
+                        <span class="text-gray-700 font-medium flex items-center">
+                            <i class="fab fa-youtube mr-2 text-red-600"></i> ¿Qué es la IA?
+                        </span>
+                        <a href="https://youtu.be/YIo7gI87WEM" target="_blank" class="text-sm text-teal-600 hover:text-teal-800 font-bold">Ver Video</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- SECCIÓN: Quién Soy (Modal) -->
+            <div id="modal-quiensoy" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-xl w-full">
+                    <h4 class="text-3xl font-extrabold text-indigo-700 mb-4 border-b pb-2">Acerca de Javier (Quién Soy)</h4>
+                    
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Entusiasta en constante formación en el ámbito de la Inteligencia Artificial, enfocado en cómo estas tecnologías pueden aplicarse de manera práctica y ética. En el proyecto **"IAparatodos"** intento combinar la capacidad de sintetizar contenidos, con la de explicar conceptos complejos, para que éstos sean accesibles a usuarios interesados en aprender y usar la Inteligencia Artificial.
+                    </p>
+                    
+                    <h5 class="text-xl font-semibold text-purple-600 mt-4 mb-2">Cursos y Formación Destacada</h5>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1O1Ya3tCJbzMZM-T3b57vT3CDFBs70HQQ/view?usp=share_link" target="_blank" class="course-link">
+                                Curso de Introducción a la IA (Big School)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1laR2Ku0hNgcPIgX3laKgfryy-DkiUxF/view?usp=share_link" target="_blank" class="course-link">
+                                Iniciación a los flujos de trabajo con Inteligencia Artificial (Big School)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1hpU0aW00wy5Tx_4QWsuugDPZCdDqB-sr/view?usp=share_link" target="_blank" class="course-link">
+                                Inteligencia artificial (IA) en el Audiovisual (RTVE Haz)
+                            </a>
+                        </li>
+                    </ul>
+
+                    <button onclick="toggleModal('modal-quiensoy')" class="mt-6 w-full py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition duration-300">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <!-- FIN DEL CONTENEDOR PRINCIPAL -->
+
+
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer class="bg-gray-800 text-white mt-8 p-6 text-center rounded-t-xl shadow-inner main-container">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 px-4">
+            <!-- Información de Contacto -->
+            <div class="text-sm">
+                <p class="font-semibold mb-1">Contacto y Proyecto</p>
+                <p class="text-gray-400">
+                    <i class="fas fa-globe mr-1"></i> Dominio: Javier-Javierman.github.io
+                </p>
+                <p class="text-gray-400">
+                    <i class="fas fa-envelope mr-1"></i> Email: javier@iaparatodos.com.es
+                </p>
+            </div>
+
+            <!-- Botón "¿Quién Soy?" -->
+            <!-- Mantenemos el estilo FAB para este botón del footer porque funciona bien en ese contexto -->
+            <button onclick="toggleModal('modal-quiensoy')" class="py-2 px-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center space-x-2">
+                <i class="fas fa-user-circle"></i> 
+                <span>¿Quién soy?</span>
+            </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-4 border-t border-gray-700 pt-4">&copy; 2025 IAparatodos - Todos los derechos reservados.</p>
     </footer>
 
-</body>
-<script src="script.js"></script>
-</html>
+    <!-- 
+        =====================================================
+        | SECCIÓN JAVASCRIPT (Lógica de la página)          |
+        =====================================================
+    -->
+    <script>
+        // Función para cambiar la vista (simulación de SPA - Single Page Application)
+        /**
+         * Muestra la página cuyo ID se pasa como argumento y oculta todas las demás.
+         * @param {string} pageId - El ID del elemento div que contiene el contenido de la página a mostrar.
+         */
+        function showPage(pageId) {
+            // 1. Selecciona todos los divs con la clase 'page-content' (las 3 vistas principales)
+            const pages = document.querySelectorAll('.page-content');
 
+            // 2. Itera sobre cada página y la oculta
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // 3. Muestra la página solicitada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                // Esto asegura que el usuario vuelva al principio de la nueva sección
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }
+        }
+
+        // Función para mostrar/ocultar el modal "Quién Soy"
+        /**
+         * Muestra u oculta un modal, toggling la clase 'hidden'.
+         * @param {string} modalId - El ID del elemento div del modal.
+         */
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
+
+        // Ejecutar la función showPage al cargar la página para asegurarse de que solo se vea 'Inicio'
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('page-inicio');
+        });
+
+    </script>
+</body>
+</html>

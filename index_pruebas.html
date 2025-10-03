@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAparatodos: La IA a tu alcance</title>
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Configuración para usar la fuente Inter de Google Fonts (más moderna) y estilos personalizados -->
+    <style>
+        /* Definición de la fuente principal: Inter (si está disponible) con Trebuchet MS como fallback */
+        body {
+            font-family: 'Inter', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: #f0f4f8; /* Color de fondo muy claro para el cuerpo */
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo para los nuevos botones modernos (btn-card) - Mantenido y optimizado */
+        .btn-card {
+            /* Fondo azul translúcido y borde azul suave */
+            @apply bg-blue-50 border border-blue-200 text-gray-800 font-bold p-6 rounded-2xl shadow-lg
+                   transition-all duration-300 ease-in-out flex flex-col items-center justify-center space-y-3
+                   w-full text-center hover:bg-blue-100;
+            min-height: 120px; /* Asegura un buen tamaño */
+        }
+        
+        /* Efecto Flotante: Elevación, sombra grande y escala al pasar el ratón */
+        .btn-card:hover {
+            @apply transform translate-y-[-4px] scale-[1.02] shadow-2xl ring-4 ring-blue-500/30; 
+        }
+
+        /* Estilo para el encabezado principal con un gradiente llamativo */
+        .header-gradient {
+            /* Gradiente más saturado para impacto visual */
+            background: linear-gradient(135deg, #4f46e5 0%, #a855f7 100%); 
+            color: white;
+            @apply flex flex-col items-center justify-center;
+        }
+
+        /* Estilo para el contenedor principal, aplicando el máximo de 800px y centrado */
+        .main-container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 80vh;
+        }
+
+        /* Estilo para la imagen del encabezado */
+        .header-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+            /* Sombra y esquinas más suaves */
+            @apply rounded-xl shadow-xl ring-4 ring-white/20; 
+        }
+        
+        /* Estilo para campos de formulario y botones dentro del modal de contacto */
+        .contact-input {
+            @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 transition duration-150;
+        }
+        
+        /* Animación de carga sutil para el fondo */
+        @keyframes pulse-bg {
+            0% { background-color: #f0f4f8; }
+            50% { background-color: #e5e7eb; }
+            100% { background-color: #f0f4f8; }
+        }
+        
+        .page-content-wrapper {
+            animation: pulse-bg 10s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased page-content-wrapper">
+
+    <!-- 
+        =====================================================
+        | SECCIÓN HTML (Estructura de la página)             |
+        =====================================================
+    -->
+
+    <!-- CONTENEDOR PRINCIPAL (Ancho máximo 800px y centrado) -->
+    <div class="main-container p-4 md:p-8 bg-white shadow-2xl rounded-b-xl border-t-8 border-indigo-500">
+
+        <!-- ENCABEZADO PRINCIPAL (HEADER) -->
+        <header class="header-gradient p-8 rounded-t-xl text-center shadow-2xl mb-8">
+            <img 
+                src="https://javierman-torre.github.io/IAparatodos/assets/images/diagrama-ia.png" 
+                alt="Diagrama de Inteligencia Artificial para todos (IAparatodos)" 
+                class="header-image w-3/4 md:w-1/2 mx-auto"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x300/4f46e5/ffffff?text=DIAGRAMA+IAparatodos+%7C+ERROR+DE+CARGA';"
+            >
+
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4">
+                IAparatodos: La IA a tu alcance
+            </h1>
+            <p class="mt-2 text-lg font-light opacity-90">Tu almacén de conocimiento sobre Inteligencia Artificial</p>
+        </header>
+        <!-- FIN DEL ENCABEZADO PRINCIPAL -->
+
+        <!-- INTRODUCCIÓN Y CONTENIDO DE LA PÁGINA -->
+        <main class="space-y-12">
+
+            <!-- SECCIÓN DE INTRODUCCIÓN GENERAL -->
+            <section class="text-center px-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">¡Bienvenido al Viaje de la IA!</h2>
+                <p class="text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                    Inmerso en un emocionante proceso de **aprendizaje sobre la Inteligencia Artificial**, con gran entusiasmo he creado este espacio para compartir los recursos, apuntes y conocimientos que voy adquiriendo en esta fascinante disciplina. Mi objetivo es que este almacén de Información te sea útil para comenzar o profundizar tu propia exploración. ¡La IA es para todos!
+                </p>
+            </section>
+
+            <!-- 1. PÁGINA DE INICIO (Home) - SECCIÓN DE BOTONES -->
+            <div id="page-inicio" class="page-content space-y-8 px-4">
+                <h3 class="text-3xl font-semibold text-center text-indigo-700">Explora Nuestros Recursos</h3>
+                
+                <!-- Botones principales: horizontal en escritorio, vertical en móvil -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- BOTÓN: Documentación soporte (btn-card) -->
+                    <button onclick="showPage('page-documentacion')" class="btn-card">
+                        <i class="fas fa-file-alt text-4xl text-blue-600"></i> 
+                        <span class="text-base font-semibold">Documentación de Soporte</span>
+                    </button>
+
+                    <!-- BOTÓN: Novedades (Color NARANJA/ROJO dentro del esquema translúcido) -->
+                    <button onclick="showPage('page-novedades')" class="btn-card hover:border-orange-400 hover:ring-orange-500/50">
+                        <i class="fas fa-star text-4xl text-orange-600"></i> 
+                        <span class="text-base font-semibold">Novedades</span>
+                    </button>
+
+                    <!-- BOTÓN: Videos de apoyo (btn-card) -->
+                    <button onclick="showPage('page-videos')" class="btn-card hover:border-teal-400 hover:ring-teal-500/50">
+                        <i class="fas fa-video text-4xl text-teal-600"></i> 
+                        <span class="text-base font-semibold">Videos de Apoyo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. PÁGINA SECUNDARIA: Documentación soporte (Oculta inicialmente) -->
+            <div id="page-documentacion" class="page-content hidden p-6 bg-purple-50 rounded-xl shadow-inner border-l-8 border-purple-500">
+                <button onclick="showPage('page-inicio')" class="text-purple-600 hover:text-purple-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-extrabold text-purple-700 mb-4">📁 Documentación de Soporte</h3>
+                <p class="text-gray-600 mb-6">Aquí encontrarás guías, PDFs, y resúmenes de los conceptos clave de la IA (Machine Learning, Deep Learning, Procesamiento de Lenguaje Natural, etc.).</p>
+                <ul class="space-y-4">
+                    <li class="p-4 bg-white border border-purple-200 rounded-lg flex items-center justify-between shadow-md hover:shadow-lg transition">
+                        <span class="text-gray-700 font-semibold flex items-center">
+                            <i class="fas fa-file-pdf mr-3 text-indigo-600 text-lg"></i> Charla Junio 2025
+                        </span>
+                        <a href="https://drive.google.com/file/d/1TvLYUlWaLkAnbw_QPNy1qwEHVn4UliIF/view?usp=share_link" target="_blank" class="text-sm py-1 px-3 bg-teal-500 text-white rounded-full hover:bg-teal-600 font-bold transition duration-200">
+                            Descargar
+                        </a>
+                    </li>
+                    <li class="p-4 bg-white border border-purple-200 rounded-lg flex items-center justify-between shadow-md hover:shadow-lg transition">
+                        <span class="text-gray-700 font-semibold flex items-center">
+                            <i class="fas fa-file-pdf mr-3 text-indigo-600 text-lg"></i> Charla Septiembre 2025
+                        </span>
+                        <a href="https://docs.google.com/presentation/d/1NKy0fuGh7gcLV3ySYSDzCnHQKn_0NyKR/edit?usp=share_link&ouid=102027009933778991773&rtpof=true&sd=true" target="_blank" class="text-sm py-1 px-3 bg-teal-500 text-white rounded-full hover:bg-teal-600 font-bold transition duration-200">
+                            Descargar
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 3. PÁGINA SECUNDARIA: Novedades -->
+            <div id="page-novedades" class="page-content hidden p-6 bg-red-50 rounded-xl shadow-inner border-l-8 border-red-500">
+                <button onclick="showPage('page-inicio')" class="text-red-600 hover:text-red-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-extrabold text-red-700 mb-4">✨ Novedades y Actualizaciones</h3>
+                <p class="text-gray-600 mb-6">Contenido y anuncios recientes sobre este almacén de Información y el mundo de la Inteligencia Artificial.</p>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-5 rounded-lg shadow-lg border-t-4 border-orange-500 hover:shadow-xl transition">
+                        <span class="text-gray-700 font-semibold block mb-2 text-lg">
+                            <i class="fas fa-image mr-2 text-orange-500"></i> Novedad de Contenido
+                        </span>
+                        <p class="text-sm text-gray-500 mb-4">¡Una nueva imagen compartida en Google Drive! Haz clic para ver el recurso.</p>
+                        <a href="https://drive.google.com/file/d/12iYcZWhpANyLP_oW__cTE06EmOlGDot9/view?usp=share_link" 
+                            target="_blank" 
+                            class="inline-block py-2 px-4 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition duration-300 text-sm shadow-md">
+                            <i class="fas fa-external-link-alt mr-2"></i> Ver Imagen (Drive)
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-lg shadow-lg border-t-4 border-gray-400 hover:shadow-xl transition">
+                        <span class="text-gray-700 font-semibold block text-lg">
+                            <i class="fas fa-wrench mr-2 text-red-500"></i> Nueva contenido en Preparación
+                        </span>
+                        <p class="text-sm text-gray-500 mt-1">Estamos preparando más contenido útil para el uso en el día a día de la IA. ¡Pronto más detalles!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 4. PÁGINA SECUNDARIA: Videos de apoyo -->
+            <div id="page-videos" class="page-content hidden p-6 bg-teal-50 rounded-xl shadow-inner border-l-8 border-teal-500">
+                <button onclick="showPage('page-inicio')" class="text-teal-600 hover:text-teal-800 mb-4 text-sm font-medium transition duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i> Volver a Inicio
+                </button>
+                <h3 class="text-3xl font-extrabold text-teal-700 mb-4">🎬 Videos de Apoyo</h3>
+                <p class="text-gray-600 mb-6">Una colección seleccionada de tutoriales y charlas que explican visualmente los temas más complejos de la IA.</p>
+                <ul class="space-y-4">
+                    <li class="p-4 bg-white border border-teal-200 rounded-lg flex items-center justify-between shadow-md hover:shadow-lg transition">
+                        <span class="text-gray-700 font-semibold flex items-center">
+                            <i class="fab fa-youtube mr-3 text-red-600 text-lg"></i> ¿Qué es la IA?
+                        </span>
+                        <a href="https://youtu.be/YIo7gI87WEM" target="_blank" class="text-sm py-1 px-3 bg-red-500 text-white rounded-full hover:bg-red-600 font-bold transition duration-200">Ver Video</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- SECCIÓN: Quién Soy (Modal) -->
+            <div id="modal-quiensoy" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'modal-quiensoy') toggleModal('modal-quiensoy')">
+                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-xl w-full transform transition-all duration-300 scale-100">
+                    <h4 class="text-3xl font-extrabold text-indigo-700 mb-4 border-b pb-2">Acerca de Javier (Quién Soy)</h4>
+                    
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Entusiasta en constante formación en el ámbito de la Inteligencia Artificial, enfocado en cómo estas tecnologías pueden aplicarse de manera práctica y ética. En el proyecto **"IAparatodos"** intento combinar la capacidad de sintetizar contenidos, con la de explicar conceptos complejos, para que éstos sean accesibles a usuarios interesados en aprender y usar la Inteligencia Artificial.
+                    </p>
+                    
+                    <h5 class="text-xl font-semibold text-purple-600 mt-6 mb-3">Cursos y Formación Destacada</h5>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1O1Ya3tCJbzMZM-T3b57vT3CDFBs70HQQ/view?usp=share_link" target="_blank" class="text-indigo-600 hover:text-purple-800 font-medium underline transition">
+                                Curso de Introducción a la IA (Big School)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1laR2Ku0hNgcPIgX3laKgfryy-DkiUxF/view?usp=share_link" target="_blank" class="text-indigo-600 hover:text-purple-800 font-medium underline transition">
+                                Iniciación a los flujos de trabajo con Inteligencia Artificial (Big School)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1hpU0aW00wy5Tx_4QWsuugDPZCdDqB-sr/view?usp=share_link" target="_blank" class="text-indigo-600 hover:text-purple-800 font-medium underline transition">
+                                Inteligencia artificial (IA) en el Audiovisual (RTVE Haz)
+                            </a>
+                        </li>
+                    </ul>
+
+                    <button onclick="toggleModal('modal-quiensoy')" class="mt-8 w-full py-3 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition duration-300 shadow-md">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: Formulario de Contacto (Modal) -->
+            <div id="modal-contacto" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'modal-contacto') toggleModal('modal-contacto')">
+                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full transform transition-all duration-300 scale-100">
+                    <h4 class="text-3xl font-extrabold text-teal-700 mb-6 border-b pb-2">Envía un Mensaje Directo</h4>
+                    
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Tu Nombre</label>
+                            <input type="text" id="contact-name" required class="contact-input" placeholder="Ej: Javier López">
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Tu Email</label>
+                            <input type="email" id="contact-email" required class="contact-input" placeholder="ejemplo@dominio.com">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                            <textarea id="contact-message" rows="4" required class="contact-input" placeholder="Escribe tu consulta o sugerencia aquí..."></textarea>
+                        </div>
+                        
+                        <!-- Mensaje dinámico de estado del formulario -->
+                        <div id="form-message" class="text-center font-bold hidden p-3 rounded-lg text-sm"></div>
+
+                        <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition duration-300 shadow-lg">
+                            <i class="fas fa-paper-plane mr-2"></i> Enviar Mensaje
+                        </button>
+                    </form>
+
+                    <button onclick="toggleModal('modal-contacto')" class="mt-4 w-full py-2 text-gray-600 font-medium rounded-xl hover:text-gray-900 transition duration-300 border border-gray-300 hover:bg-gray-100">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <!-- FIN DEL CONTENEDOR PRINCIPAL -->
+
+
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer class="bg-gray-900 text-white mt-8 p-6 text-center rounded-t-xl shadow-inner main-container">
+        <!-- Contenedor flex principal del Footer -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 px-4">
+            
+            <!-- 1. Información de Contacto/Proyecto -->
+            <div class="text-sm text-left md:text-center">
+                <p class="font-semibold mb-1 text-gray-300">Contacto y Proyecto</p>
+                <p class="text-gray-400">
+                    <i class="fas fa-globe mr-2 text-indigo-400"></i> Dominio: Javier-Javierman.github.io
+                </p>
+                <!-- Dirección de email actualizada en el footer -->
+                <p class="text-gray-400">
+                    <i class="fas fa-envelope mr-2 text-indigo-400"></i> Email: javier@iaparatodos.com
+                </p>
+            </div>
+
+            <!-- 2. Contenedor de Botones (Alineación derecha) -->
+            <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                 <!-- Botón "Formulario de Contacto" -->
+                <button onclick="toggleModal('modal-contacto')" class="py-2 px-5 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center justify-center space-x-2 shadow-xl">
+                    <i class="fas fa-paper-plane"></i> 
+                    <span>Contacto</span>
+                </button>
+
+                <!-- Botón "¿Quién Soy?" -->
+                <button onclick="toggleModal('modal-quiensoy')" class="py-2 px-5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center justify-center space-x-2 shadow-xl">
+                    <i class="fas fa-user-circle"></i> 
+                    <span>¿Quién soy?</span>
+                </button>
+            </div>
+        </div>
+        
+        <p class="text-xs text-gray-500 mt-6 border-t border-gray-700 pt-4">&copy; 2025 IAparatodos - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- 
+        =====================================================
+        | SECCIÓN JAVASCRIPT (Lógica de la página)           |
+        =====================================================
+    -->
+    <script>
+        // Dirección de correo del destinatario (solo para el mensaje de confirmación en frontend)
+        const DESTINATION_EMAIL = "javier@iaparatodos.com";
+
+        // Función para cambiar la vista (simulación de SPA - Single Page Application)
+        /**
+         * Muestra la página cuyo ID se pasa como argumento y oculta todas las demás.
+         * @param {string} pageId - El ID del elemento div que contiene el contenido de la página a mostrar.
+         */
+        function showPage(pageId) {
+            // 1. Selecciona todos los divs con la clase 'page-content' (las 3 vistas principales)
+            const pages = document.querySelectorAll('.page-content');
+
+            // 2. Itera sobre cada página y la oculta
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // 3. Muestra la página solicitada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                // Esto asegura que el usuario vuelva al principio de la nueva sección
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }
+        }
+
+        // Función para mostrar/ocultar el modal "Quién Soy" y "Formulario de Contacto"
+        /**
+         * Muestra u oculta un modal, toggling la clase 'hidden'.
+         * @param {string} modalId - El ID del elemento div del modal.
+         */
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+            
+            // Si el modal de contacto se abre, limpiamos el estado del formulario anterior
+            if (modalId === 'modal-contacto' && !modal.classList.contains('hidden')) {
+                 document.getElementById('contact-form').reset();
+                 document.getElementById('form-message').classList.add('hidden');
+            }
+        }
+        
+        // Función para manejar el envío del formulario de contacto (USANDO VERCEL API - SIMULACIÓN)
+        /**
+         * Simula el envío del formulario de contacto.
+         * NOTA: En un entorno real, esta función haría un fetch() a un endpoint backend.
+         * Aquí, simularemos el error de red que ocurriría en este entorno de ejecución
+         * ya que el endpoint /api/send-email no está disponible.
+         * @param {Event} event - El evento de envío del formulario.
+         */
+        async function handleFormSubmit(event) {
+            event.preventDefault(); // Detiene el envío predeterminado del formulario
+
+            const formMessage = document.getElementById('form-message');
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+
+            // 1. Mostrar mensaje de "Enviando"
+            formMessage.textContent = `Intentando enviar mensaje a ${DESTINATION_EMAIL}...`;
+            formMessage.className = 'text-center font-bold p-3 rounded-lg bg-blue-100 text-blue-700 block';
+
+            // Preparamos el cuerpo de la petición (aunque sabemos que fallará)
+            const formData = { name, email, message };
+
+            try {
+                // 2. Llamada FETCH simulada (fallará en este entorno sin backend)
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                
+                // 3. Si por algún motivo la llamada tiene éxito (poco probable aquí)
+                if (response.ok) {
+                    const result = await response.json();
+                     // Éxito simulado:
+                    formMessage.textContent = `¡Mensaje enviado, ${name}! Tu consulta ha sido entregada a ${DESTINATION_EMAIL}. (Simulación exitosa)`;
+                    formMessage.className = 'text-center font-bold p-3 rounded-lg bg-green-100 text-green-700 block';
+                    document.getElementById('contact-form').reset(); // Limpiar el formulario
+                } else {
+                    // Falla: El servidor devolvió un error (404, 500, etc.)
+                    // En este entorno, el 404 es la respuesta esperada ya que el endpoint no existe.
+                    formMessage.textContent = `⚠️ Error de Servicio (código ${response.status}). El formulario de contacto requiere un servicio backend (como Vercel Serverless Function) que no está activo en esta previsualización. Contacta a ${DESTINATION_EMAIL} directamente.`;
+                    formMessage.className = 'text-center font-bold p-3 rounded-lg bg-red-100 text-red-700 block';
+                }
+
+            } catch (error) {
+                // Error de red (fetch fallido, que es lo más probable en este entorno)
+                console.error('Error de red al intentar contactar al API:', error);
+                formMessage.textContent = `❌ Error de Conexión. El formulario no pudo contactar al servidor. Por favor, usa el email: ${DESTINATION_EMAIL}`;
+                formMessage.className = 'text-center font-bold p-3 rounded-lg bg-red-100 text-red-700 block';
+            }
+        }
+
+        // Ejecutar la función showPage al cargar la página para asegurarse de que solo se vea 'Inicio'
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('page-inicio');
+        });
+
+    </script>
+</body>
+</html>

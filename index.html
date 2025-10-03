@@ -70,7 +70,12 @@
         }
         
         /* Ocultamos el estilo obsoleto para evitar conflictos, aunque no está ya en el HTML */
-        .btn-fab { display: none; } 
+        .btn-fab { display: none; }
+
+        /* Estilo para campos de formulario y botones dentro del modal de contacto */
+        .contact-input {
+            @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -112,14 +117,11 @@
                 </p>
             </section>
 
-            <!-- 1. PÁGINA DE INICIO (Home) - SECCIÓN ACTUALIZADA DE BOTONES -->
+            <!-- 1. PÁGINA DE INICIO (Home) - SECCIÓN DE BOTONES -->
             <div id="page-inicio" class="page-content space-y-8 px-4">
                 <h3 class="text-3xl font-semibold text-center text-indigo-700">Explora Nuestros Recursos</h3>
                 
-                <!-- 
-                    ACTUALIZACIÓN: Usamos flexbox para la alineación horizontal en dispositivos grandes (md:flex).
-                    El espacio entre botones es 'gap-4', y en móvil (por defecto) sigue siendo una columna.
-                -->
+                <!-- Botones principales: horizontal en escritorio, vertical en móvil -->
                 <div class="flex flex-col md:flex-row gap-4">
 
                     <!-- BOTÓN: Documentación soporte (btn-card) -->
@@ -243,6 +245,39 @@
                 </div>
             </div>
 
+            <!-- SECCIÓN: Formulario de Contacto (Modal) -->
+            <div id="modal-contacto" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full">
+                    <h4 class="text-3xl font-extrabold text-teal-700 mb-6 border-b pb-2">Envía un Mensaje Directo</h4>
+                    
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Tu Nombre</label>
+                            <input type="text" id="contact-name" required class="contact-input" placeholder="Ej: Javier López">
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Tu Email</label>
+                            <input type="email" id="contact-email" required class="contact-input" placeholder="ejemplo@dominio.com">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                            <textarea id="contact-message" rows="4" required class="contact-input" placeholder="Escribe tu consulta o sugerencia aquí..."></textarea>
+                        </div>
+                        
+                        <!-- Mensaje dinámico de estado del formulario -->
+                        <div id="form-message" class="text-center font-bold hidden p-3 rounded-lg"></div>
+
+                        <button type="submit" class="w-full py-3 bg-indigo-500 text-white font-bold rounded-lg hover:bg-indigo-600 transition duration-300">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+
+                    <button onclick="toggleModal('modal-contacto')" class="mt-4 w-full py-2 text-gray-500 font-medium rounded-lg hover:text-gray-700 transition duration-300 border border-gray-200 hover:border-gray-400">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+
         </main>
     </div>
     <!-- FIN DEL CONTENEDOR PRINCIPAL -->
@@ -250,25 +285,37 @@
 
     <!-- PIE DE PÁGINA (FOOTER) -->
     <footer class="bg-gray-800 text-white mt-8 p-6 text-center rounded-t-xl shadow-inner main-container">
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 px-4">
-            <!-- Información de Contacto -->
+        <!-- Contenedor flex principal del Footer (para alinear 3 columnas: Info | Botón Contacto | Botón Quién Soy) -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 px-4">
+            
+            <!-- 1. Información de Contacto/Proyecto -->
             <div class="text-sm">
                 <p class="font-semibold mb-1">Contacto y Proyecto</p>
                 <p class="text-gray-400">
                     <i class="fas fa-globe mr-1"></i> Dominio: Javier-Javierman.github.io
                 </p>
+                <!-- Dirección de email actualizada en el footer -->
                 <p class="text-gray-400">
-                    <i class="fas fa-envelope mr-1"></i> Email: javier@iaparatodos.com.es
+                    <i class="fas fa-envelope mr-1"></i> Email: javier@iaparatodos.com.
                 </p>
             </div>
 
-            <!-- Botón "¿Quién Soy?" -->
-            <!-- Mantenemos el estilo FAB para este botón del footer porque funciona bien en ese contexto -->
-            <button onclick="toggleModal('modal-quiensoy')" class="py-2 px-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center space-x-2">
-                <i class="fas fa-user-circle"></i> 
-                <span>¿Quién soy?</span>
-            </button>
+            <!-- 2. Contenedor de Botones (Alineación derecha) -->
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                 <!-- Botón "Formulario de Contacto" -->
+                <button onclick="toggleModal('modal-contacto')" class="py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center justify-center space-x-2 shadow-lg">
+                    <i class="fas fa-paper-plane"></i> 
+                    <span>Formulario de Contacto</span>
+                </button>
+
+                <!-- Botón "¿Quién Soy?" -->
+                <button onclick="toggleModal('modal-quiensoy')" class="py-2 px-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full text-sm transition duration-300 flex items-center justify-center space-x-2 shadow-lg">
+                    <i class="fas fa-user-circle"></i> 
+                    <span>¿Quién soy?</span>
+                </button>
+            </div>
         </div>
+        
         <p class="text-xs text-gray-500 mt-4 border-t border-gray-700 pt-4">&copy; 2025 IAparatodos - Todos los derechos reservados.</p>
     </footer>
 
@@ -278,6 +325,9 @@
         =====================================================
     -->
     <script>
+        // Dirección de correo del destinatario (solo para el mensaje de confirmación en frontend)
+        const DESTINATION_EMAIL = "javier@iaparatodos.com.";
+
         // Función para cambiar la vista (simulación de SPA - Single Page Application)
         /**
          * Muestra la página cuyo ID se pasa como argumento y oculta todas las demás.
@@ -301,7 +351,7 @@
             }
         }
 
-        // Función para mostrar/ocultar el modal "Quién Soy"
+        // Función para mostrar/ocultar el modal "Quién Soy" y "Formulario de Contacto"
         /**
          * Muestra u oculta un modal, toggling la clase 'hidden'.
          * @param {string} modalId - El ID del elemento div del modal.
@@ -309,6 +359,68 @@
         function toggleModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.toggle('hidden');
+            
+            // Si el modal de contacto se abre, limpiamos el estado del formulario anterior
+            if (modalId === 'modal-contacto' && !modal.classList.contains('hidden')) {
+                 document.getElementById('contact-form').reset();
+                 document.getElementById('form-message').classList.add('hidden');
+            }
+        }
+        
+        // Función para manejar el envío del formulario de contacto (USANDO VERCEL API)
+        /**
+         * Envía el formulario de contacto haciendo una llamada fetch() al endpoint Serverless de Vercel.
+         * @param {Event} event - El evento de envío del formulario.
+         */
+        async function handleFormSubmit(event) {
+            event.preventDefault(); // Detiene el envío predeterminado del formulario
+
+            const formMessage = document.getElementById('form-message');
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+
+            // 1. Mostrar mensaje de "Enviando"
+            formMessage.textContent = `Enviando mensaje a ${DESTINATION_EMAIL}...`;
+            formMessage.classList.remove('hidden', 'bg-green-100', 'bg-red-100', 'text-green-700', 'text-red-700');
+            formMessage.classList.add('bg-blue-100', 'text-blue-700');
+
+            // Preparar los datos para enviar al servidor
+            const formData = { name, email, message };
+
+            try {
+                // 2. Llamada FETCH al endpoint Serverless de Vercel (este endpoint llama al api/send-email.js)
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                
+                // 3. Procesar la respuesta
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Éxito: El servidor ha confirmado el envío
+                    formMessage.textContent = `¡Mensaje enviado, ${name}! Tu consulta ha sido entregada a ${DESTINATION_EMAIL}.`;
+                    formMessage.classList.remove('bg-blue-100', 'text-blue-700');
+                    formMessage.classList.add('bg-green-100', 'text-green-700');
+                    document.getElementById('contact-form').reset(); // Limpiar el formulario
+                } else {
+                    // Falla: El servidor devolvió un error (400, 500, etc.)
+                    formMessage.textContent = `Error al enviar: ${result.message || 'Error de conexión o configuración en el servidor.'}`;
+                    formMessage.classList.remove('bg-blue-100', 'text-blue-700', 'bg-green-100', 'text-green-700');
+                    formMessage.classList.add('bg-red-100', 'text-red-700');
+                }
+
+            } catch (error) {
+                // Error de red (fetch fallido)
+                console.error('Error de red al intentar contactar al API:', error);
+                formMessage.textContent = 'Error de red. Asegúrate de estar conectado a Internet.';
+                formMessage.classList.remove('bg-blue-100', 'text-blue-700', 'bg-green-100', 'text-green-700');
+                formMessage.classList.add('bg-red-100', 'text-red-700');
+            }
         }
 
         // Ejecutar la función showPage al cargar la página para asegurarse de que solo se vea 'Inicio'

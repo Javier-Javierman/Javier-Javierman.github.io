@@ -89,7 +89,7 @@ async function handleFormSubmit(event) {
     } catch (error) {
         // Error de red
         console.error('Error de red:', error);
-        formMessage.textContent = `❌ Error de Conexión. Por favor, usa el email: ${DESTINATION_EMAIL}`;
+        formMessage.textContent = `❌ Error de Conexión. Por favor, usa el email: ${javier@iaparatodos.com.es}`;
         formMessage.className = 'text-center font-bold p-3 rounded-lg bg-red-100 text-red-700 block';
     }
 }
